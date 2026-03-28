@@ -1,0 +1,13 @@
+version = 1
+requires-python = ">=3.10"
+
+[[package]]
+name = "bug-triage-env"
+version = "1.0.0"
+source = { editable = "." }
+dependencies = [
+  { name = "fastapi" },
+  { name = "uvicorn", extra = ["standard"] },
+  { name = "pydantic" },
+  { name = "openenv-core" },
+]
