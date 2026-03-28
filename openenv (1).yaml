@@ -1,0 +1,3 @@
+name: bug_triage_env
+version: "1.0.0"
+description: A real-world OpenEnv environment for AI agent bug report triage.
