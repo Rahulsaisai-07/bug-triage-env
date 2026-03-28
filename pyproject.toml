@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "bug-triage-env"
+version = "1.0.0"
+description = "OpenEnv environment for AI agent bug report triage"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi==0.111.0",
+    "uvicorn[standard]==0.29.0",
+    "pydantic==2.7.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
