@@ -21,7 +21,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global environment instance
 env = BugTriageEnvironment()
 
 
@@ -30,14 +29,7 @@ class ActionRequest(BaseModel):
     team: Optional[str] = ""
     is_duplicate: Optional[bool] = False
     duplicate_id: Optional[str] = None
-    task_type: Optional[str] = None  # for reset
-
-
-class StepResponse(BaseModel):
-    observation: dict
-    reward: float
-    done: bool
-    state: dict
+    task_type: Optional[str] = None
 
 
 @app.get("/health")
@@ -47,7 +39,6 @@ def health():
 
 @app.post("/reset")
 def reset(request: ActionRequest = ActionRequest()):
-    from models import BugTriageAction
     obs = env.reset(task_type=request.task_type)
     state = env.state()
     return {
@@ -124,3 +115,12 @@ def root():
         "tasks": ["severity classification", "team routing", "duplicate detection"],
         "endpoints": ["/reset", "/step", "/state", "/health", "/docs"]
     }
+
+
+def main():
+    import uvicorn
+    uvicorn.run("server.app:app", host="0.0.0.0", port=7860, reload=False)
+
+
+if __name__ == "__main__":
+    main()
